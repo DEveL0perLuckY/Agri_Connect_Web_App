@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+        layout:decorate="~{layout2}">
+    <head>
+        <title>AgriConnect</title>
+    </head>
+    <body>
+        <div layout:fragment="content2">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{image.add.headline}]]</h1>
+                <div>
+                    <a th:href="@{/admin/images}" class="btn btn-secondary">[[#{image.add.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('image')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='image', field='description', type='textarea')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='image', field='uploadDate', inputClass='js-datetimepicker')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='image', field='farmer', type='select')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='image', field='folder', type='select')}" />
+                <input type="submit" th:value="#{image.add.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

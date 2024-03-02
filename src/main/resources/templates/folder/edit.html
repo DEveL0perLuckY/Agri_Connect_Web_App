@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+        layout:decorate="~{layout2}">
+    <head>
+        <title>AgriConnect</title>
+    </head>
+    <body>
+        <div layout:fragment="content2">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{folder.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/admin/folders}" class="btn btn-secondary">[[#{folder.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('folder')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='folder', field='folderId', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='folder', field='folderName', required=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='folder', field='region', required=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='folder', field='crop', required=true)}" />
+                <input type="submit" th:value="#{folder.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

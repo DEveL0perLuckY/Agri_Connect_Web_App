@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>AgriConnect</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        
+        <div class="login-form">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger"> Roles are not found. Please try again.</div>
+            </div>
+            <div class="container mt-5" style="margin-bottom: 115px; padding: 10px;">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card" style="margin-bottom: 50px;">
+                            <div class="card-body">
+                                <h2 class="card-title text-center mb-4">Sign Up</h2>
+                                <form class="form-horizontal" method="post" role="form" th:action="@{/signup}"
+                                    th:object="${obj}" th:method="post">
+
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">User Name</label>
+                                        <input th:field="*{username}" type="text" class="form-control" id="email"
+                                            name="email" placeholder="Enter your userName" required>
+                                        <p class="text-danger" th:errors="*{username}"
+                                            th:if="${#fields.hasErrors('username')}"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email address</label>
+                                        <input th:field="*{email}" type="email" class="form-control" id="email"
+                                            name="email" placeholder="Enter your email" required>
+                                        <p class="text-danger" th:errors="*{email}"
+                                            th:if="${#fields.hasErrors('email')}"></p>
+
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input th:field="*{password}" type="password" class="form-control" id="password"
+                                            name="password" placeholder="Enter your password" required>
+                                        <p class="text-danger" th:errors="*{password}"
+                                            th:if="${#fields.hasErrors('password')}"></p>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-secondary">SignUp</button>
+                                    </div>
+                                </form>
+                                <div class="text-center mt-3">
+                                    <p>Already have an account? <a class='btn btn-outline-dark'
+                                            th:href="@{/login}">SignIn</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

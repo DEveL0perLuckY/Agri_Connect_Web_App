@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+    layout:decorate="~{layout2}">
+
+<head>
+    <title>Welcome back</title>
+</head>
+
+<body>
+    <div layout:fragment="content2">
+
+        <style>
+            .form-container {
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>User Profile</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="username" class="col-sm-2 col-form-label"><strong>UserName:</strong></label>
+                            <div class="col-sm-4">
+                                <p id="username" th:text="${user.username}" class="form-control-plaintext"></p>
+                            </div>
+                            <label for="email" class="col-sm-2 col-form-label"><strong>Email:</strong></label>
+                            <div class="col-sm-4">
+                                <p id="email" th:text="${user.email}" class="form-control-plaintext"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="obj1" class="col-sm-2 col-form-label"><strong>Folders:</strong></label>
+                            <div class="col-sm-4">
+                                <p id="obj1" th:text="${obj1}" class="form-control-plaintext"></p>
+                            </div>
+                            <label for="obj2" class="col-sm-2 col-form-label"><strong>Data:</strong></label>
+                            <div class="col-sm-4">
+                                <p id="obj2" th:text="${obj2}" class="form-control-plaintext"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

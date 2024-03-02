@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+        layout:decorate="~{layout2}">
+    <head>
+        <title>AgriConnect</title>
+    </head>
+    <body>
+        <div layout:fragment="content2">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{roles.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/admin/roless}" class="btn btn-secondary">[[#{roles.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('roles')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='roles', field='id', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='roles', field='name', required=true)}" />
+                <input type="submit" th:value="#{roles.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

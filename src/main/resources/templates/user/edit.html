@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+        layout:decorate="~{layout2}">
+    <head>
+        <title>AgriConnect</title>
+    </head>
+    <body>
+        <div layout:fragment="content2">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{user.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/admin/users}" class="btn btn-secondary">[[#{user.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('user')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='userId', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='username',disabled=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='email',disabled=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='password', required=true , disabled=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='farmerFolderMappingFolders', type='multiselect' ,disabled=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='roleId', type='multiselect')}" />
+                <input type="submit" th:value="#{user.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

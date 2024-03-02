@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>AgriConnect</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+
+        <div class="container mt-5">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">Key Features</h1>
+                    <p class="col-md-8 fs-4">
+                        Explore the powerful features of our Farmer Management Application that streamline farm
+                        management tasks and enhance collaboration between administrators and farmers.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6">
+                    <div class="h-100 p-5 text-white bg-dark rounded-3">
+                        <h2>Admin Interface</h2>
+                        <ul class="list-unstyled">
+                            <li>Create and Manage Folders: Admins can create instances of folders based on regions or crops.</li>
+                            <li>Assign Farmers to Folders: Admins can assign farmers to specific folders for efficient organization.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="h-100 p-5 bg-light border rounded-3">
+                        <h2>Farmer Interface</h2>
+                        <ul class="list-unstyled">
+                            <li>Upload Images and Data: Farmers can upload images and data related to the folders assigned to them.</li>
+                            <li>Access Assigned Content: Farmers have access to the content assigned to them, allowing for easy management.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

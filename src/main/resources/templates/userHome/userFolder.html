@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+    layout:decorate="~{layout2}">
+
+<head>
+    <title>AgriConnect</title>
+</head>
+
+<body>
+    <div layout:fragment="content2">
+    
+        <div class="d-flex flex-wrap mb-4">
+            <h1 class="flex-grow-1">Folder List</h1>
+            <div>
+                <a th:href="@{/user/folders/add}" class="btn btn-primary ms-2">Create Folder</a>
+            </div>
+        </div>
+        <div th:if="${folders.empty}">No folders found. Create a new folder</div>
+        <div th:if="${!folders.empty}" class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Folder ID</th>
+                        <th>Folder Name</th>
+                        <th>Region</th>
+                        <th>Crop</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="folder : ${folders}">
+                        <td th:text="${folder.folderId}"></td>
+                        <td th:text="${folder.folderName}"></td>
+                        <td th:text="${folder.region}"></td>
+                        <td th:text="${folder.crop}"></td>
+                        <td>
+                            <a th:href="@{/user/folders/details/__${folder.folderId}__}"
+                                class="btn btn-sm btn-secondary">Details</a>
+                            <a th:href="@{/user/folders/delete/__${folder.folderId}__}"
+                                class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

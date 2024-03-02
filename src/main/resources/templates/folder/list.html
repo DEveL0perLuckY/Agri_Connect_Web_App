@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>AgriConnect</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{folder.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/admin/folders/add}" class="btn btn-primary ms-2">[[#{folder.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${folders.empty}">[[#{folder.list.empty}]]</div>
+            <div th:if="${!folders.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{folder.folderId.label}]]</th>
+                            <th scope="col">[[#{folder.folderName.label}]]</th>
+                            <th scope="col">[[#{folder.region.label}]]</th>
+                            <th scope="col">[[#{folder.crop.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="folder : ${folders}">
+                            <td>[[${folder.folderId}]]</td>
+                            <td>[[${folder.folderName}]]</td>
+                            <td>[[${folder.region}]]</td>
+                            <td>[[${folder.crop}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/admin/folders/edit/{folderId}(folderId=${folder.folderId})}" class="btn btn-sm btn-secondary">[[#{folder.list.edit}]]</a>
+                                    <form th:action="@{/admin/folders/delete/{folderId}(folderId=${folder.folderId})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{folder.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

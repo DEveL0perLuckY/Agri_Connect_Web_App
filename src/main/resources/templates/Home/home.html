@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>AgriConnect</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div th:if="${param.logout}">
+            <div class="alert alert-success">You have been logged out !!!</div>
+        </div>
+        <div class="container mt-5">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">Welcome to AgriConnect</h1>
+                    <p class="col-md-8 fs-4">
+                        Your all-in-one solution for efficient farm management. Connect with your farmers and manage
+                        agricultural data effortlessly.
+                    </p>
+                    <a th:href="@{/about}" class="btn btn-secondary btn-lg">Learn More</a>
+                </div>
+            </div>
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6">
+                    <div class="h-100 p-5 text-white bg-dark rounded-3">
+                        <h2>Admin Interface</h2>
+                        <p>
+                            Admins can create folders, assign farmers based on regions or crops, and streamline farm
+                            management tasks.
+                        </p>
+                        <a th:href="@{/admin}" class="btn btn-outline-light">Go to Admin Interface</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="h-100 p-5 bg-light border rounded-3">
+                        <h2>Farmer Interface</h2>
+                        <p>
+                            Farmers can upload images and data related to their assigned regions or crops,
+                            facilitating effective communication with administrators.
+                        </p>
+                        <a th:href="@{/user}" class="btn btn-outline-secondary">Go to Farmer Interface</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

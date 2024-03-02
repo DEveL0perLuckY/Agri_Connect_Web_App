@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+    layout:decorate="~{layout2}">
+
+<head>
+    <title>AgriConnect</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body >
+    <div layout:fragment="content2">
+
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Welcome to Farmer's Network</h1>
+            <h2>Welcome , Admin </h2>
+        </div>
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <div class="col-md-8">
+                    <img th:src="@{/images/img.jpg}" alt="Background" class="img-fluid mb-4" width="8000"
+                        height="5000" />
+                </div>
+                <div class="col-md-4 align-self-center">
+                    <div class="list-group">
+                        <a th:href="@{/admin/users}"
+                            class="list-group-item list-group-item-action">Users</a>
+                        <a th:href="@{/admin/folders}"
+                            class="list-group-item list-group-item-action">Folders</a>
+                        <a th:href="@{/admin/images}"
+                            class="list-group-item list-group-item-action">Images</a>
+                        <a th:href="@{/admin/roless}"
+                            class="list-group-item list-group-item-action">Roles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

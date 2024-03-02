@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+        layout:decorate="~{layout2}">
+    <head>
+        <title>AgriConnect</title>
+    </head>
+    <body>
+        <div layout:fragment="content2">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{image.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/admin/images/add}" class="btn btn-primary ms-2">[[#{image.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${images.empty}">[[#{image.list.empty}]]</div>
+            <div th:if="${!images.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{image.imageId.label}]]</th>
+                            <th scope="col">[[#{image.uploadDate.label}]]</th>
+                            <th scope="col">[[#{image.farmer.label}]]</th>
+                            <th scope="col">[[#{image.folder.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="image : ${images}">
+                            <td>[[${image.imageId}]]</td>
+                            <td>[[${image.uploadDate}]]</td>
+                            <td>[[${image.farmer}]]</td>
+                            <td>[[${image.folder}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/admin/images/edit/{imageId}(imageId=${image.imageId})}" class="btn btn-sm btn-secondary">[[#{image.list.edit}]]</a>
+                                    <form th:action="@{/admin/images/delete/{imageId}(imageId=${image.imageId})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{image.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+    layout:decorate="~{layout2}">
+
+<head>
+    <title>AgriConnect</title>
+</head>
+
+<body>
+    <div layout:fragment="content2">
+        <div class="d-flex flex-wrap mb-4">
+            <h1 class="flex-grow-1">Add Folder</h1>
+            <div>
+                <a th:href="@{/user/folders}" class="btn btn-secondary">[[#{folder.add.back}]]</a>
+            </div>
+        </div>
+        <div class="container">
+
+            <form th:action="@{/user/folders/add}" th:object="${obj}" method="post">
+                <!-- Folder Name -->
+                <div class="form-group">
+                    <label for="folderName">Folder Name:</label>
+                    <input type="text" class="form-control" id="folderName" th:field="*{folderName}" required
+                        maxlength="100">
+                </div>
+
+                <!-- Region -->
+                <div class="form-group">
+                    <label for="region">Region:</label>
+                    <input type="text" class="form-control" id="region" th:field="*{region}" required maxlength="50">
+                </div>
+
+                <!-- Crop -->
+                <div class="form-group">
+                    <label for="crop">Crop:</label>
+                    <input type="text" class="form-control" id="crop" th:field="*{crop}" required maxlength="50">
+                </div>
+<br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>

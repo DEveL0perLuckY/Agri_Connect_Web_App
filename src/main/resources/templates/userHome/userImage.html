@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+    layout:decorate="~{layout2}">
+
+<head>
+    <title>AgriConnect</title>
+</head>
+
+<body>
+    <div layout:fragment="content2">
+        <div class="d-flex flex-wrap mb-4">
+            <h1 class="flex-grow-1">Folder: <span th:text="${id}"></span></h1>
+            <div>
+                <a th:href="@{/user/folders}" class="btn btn-secondary">[[#{folder.add.back}]]</a>
+            </div>
+        </div>
+        <div class="container" style="margin-bottom: 10px;">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Upload Crop Image</h5>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/user/folderData/add}" role="form" th:object="${cropImage}" method="post"
+                                enctype="multipart/form-data">
+
+                                <input type="hidden" th:field="*{folder}">
+                                <div class="form-group pb-4">
+                                    <textarea th:field="*{description}" class="form-control" id="cropImageDescription"
+                                        rows="5" placeholder="Enter crop details" required></textarea>
+                                </div>
+                                <div class="form-group pb-4">
+                                    <img id="uploadedCropImage" class="img-fluid" width="500" height="500"
+                                        style="display: none; margin-bottom: 10px;" alt="Uploaded Crop Image">
+                                    <input type="file" name="file" id="file" onchange="displayCropImage()"
+                                        style="display: none;">
+                                    <label for="file" class="btn btn-outline-secondary">
+                                        <i class="fas fa-upload"></i> Upload Image
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-outline-success">Upload</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function displayCropImage() {
+                var input = document.getElementById('file');
+                var img = document.getElementById('uploadedCropImage');
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+        <style>
+            .img-system {
+                background-color: #ffffff;
+                border: 1px solid #d2d2d2;
+                border-radius: 10px;
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .img {
+                margin-bottom: 20px;
+            }
+        </style>
+        <div th:if="${ #lists.isEmpty(cropImageList)}">
+        <p>Folder is empty</p>
+        </div>
+        <div th:if="${ not#lists.isEmpty(cropImageList)}">
+            <div class="col-md-9 order-md-2" th:each="img:${cropImageList}">
+                <div class="img">
+                    <div class="img-system">
+                        <h5>Id: <span th:text="${img.imageId}"></span></h5>
+                        <p>Description: <span th:text="${img.description}"></span> </p>
+                        <img class="img-fluid" width="500" height="500" th:if="${img.hasImage}"
+                            th:src="@{'/user/image/' + ${img.imageId}}">
+                        <div class="text-end">Posted on:
+                            <span class="formatted-date" th:text="${img.uploadDate}"></span>
+                        </div>
+                        <div class="text-end mt-2">
+                            <a th:href="@{/user/image/delete/__${img.imageId}__}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash-alt"></i> Delete Image
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
